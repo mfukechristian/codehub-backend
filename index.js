@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
+import userRoutes from "./routes/userRoutes.js";
+import codeSnippetRoutes from "./routes/codeSnippetRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -22,6 +24,8 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send("CodeHub Backend is running!");
 });
+app.use("/api/users", userRoutes);
+app.use("/api/codesnippets", codeSnippetRoutes);
 
 // Start the server
 app.listen(PORT, () => {
